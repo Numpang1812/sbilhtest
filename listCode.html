@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/sbilhlogoonly.png" type="image/x-icon">
+  <meta name="description" content="Assess and manage loans while recording sales transactions efficiently.">
+  <title>SBILH Economics Code 2024</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/web/assets/mobirise-icons2/mobirise2.css?rnd=1716795168711">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/bootstrap/css/bootstrap.min.css?rnd=1716795168712">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1716795168712">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1716795168712">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/parallax/jarallax.css?rnd=1716795168712">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/dropdown/css/style.css?rnd=1716795168712">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/socicon/css/styles.css?rnd=1716795168712">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/theme/css/style.css?rnd=1716795168712">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/469981/assets/css/mbr-additional.css?rnd=1716795168712" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Khmer&family=Noto+Sans+Khmer:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    .table {
+        overflow: scroll;
+    }
+    #dataTable {
+        margin: auto; /* Center the table */
+        margin-top: 10px;
+        width: 100%; /* Set the width of the table to 80% of the parent container */
+        border-collapse: collapse; /* Collapse the borders */
+        font-family: "Noto Sans Khmer", sans-serif;
+        display: table-row;
+        overflow-x: auto;
+    }
+    #dataTable th, #dataTable td {
+        padding: 8px; /* Add some padding to the table cells */
+        text-align: center; /* Center the text in the table cells */
+        border: 1px solid black; /* Add a border to the table cells */
+    }
+    .glow-on-click:active {
+    background-color: red;
+    }
+    .glow-on-click {
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 10px 2px lightskyblue; /* Add the glow effect */
+    }
+    #defSearch {
+        margin: auto; /* Center the table */
+        margin-top: 150px;
+        width: 80%; /* Set the width of the table to 80% of the parent container */
+        border-collapse: collapse; /* Collapse the borders */
+        font-family: "Noto Sans Khmer", sans-serif;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        display: flex;
+        background-image: url(https://th.bing.com/th/id/OIP.rsZB5iKwX6totSXcV94swQHaHN?rs=1&pid=ImgDetMain); /* Add a search icon to input */
+        background-size: 22px;
+        background-position: 10px 12px; /* Position the search icon */
+        background-repeat: no-repeat; /* Do not repeat the icon image */
+        width: 100%; /* Full-width */
+        font-size: 16px; /* Increase font-size */
+        padding: 12px 20px 12px 40px; /* Add some padding */
+        border: 1px solid #ddd; /* Add a grey border */
+        margin-bottom: 12px; /* Add some space below the input */
+  }
+  .table-responsive {
+    overflow: auto;
+    width: 100%; /* Ensures the table is 100% of the parent container */
+    }
+@media (max-width: 600px) {
+    .container-fluid {
+        overflow-x: auto;
+    }
+    #dataTable {
+        width: 100%;
+        overflow-x: auto;
+    }
+    #dataTable th, #dataTable td {
+        padding: 5px;
+        font-size: 14px; /* Reduces the font size for smaller screens */
+        max-width: fit-content;
+    }
+    .table-responsive {
+        max-width: fit-content;
+        width: 100%;
+    }
+}
+/* CSS for search-responsive class */
+
+.search-responsive {
+    position: sticky;
+    top: 110px;
+    z-index: 100;
+}
+/* CSS for the popup */
+/* Updated CSS for the popup using flexbox */
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #888;
+  width: 300px; /* Could be more or less, depending on screen size */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  z-index: 9; /* Sit on top */
+  background-color: #fefefe;
+  padding: 10px;
+  text-align: center;
+}
+
+#popup-content {
+  display: flex;
+  flex-direction: column; /* Stack flex items vertically */
+  align-items: center; /* Center align items horizontally */
+}
+
+/* Button to close the popup */
+#close-btn {
+  margin-top: 10px; /* Space between the text and the button */
+  padding: 5px 20px;
+  background-color: darkblue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#close-btn:hover {
+  background-color: darkblue;
+}
+
+
+
+</style>
+</head>
+<body>
+  
+<section data-bs-version="5.1" class="menu menu2 cid-udXqNcCE4F" once="menu" id="menu-5-udXqNcCE4F">	
+
+	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				<span class="navbar-logo">
+					<a href="index.html">
+						<img src="assets/images/lyhourlogo.gif" style="height: 4.3rem;">
+					</a>
+				</span>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+					<li class="nav-item">
+						<a class="nav-link link text-black display-4" href="index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black display-4" href="searchList.html" aria-expanded="false">List</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black display-4" href="listCode.html">Search</a>
+					</li>
+				</ul>
+				
+				<div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" style="background-color: darkblue !important; border-color: darkblue !important" href="searchList.html"> List</a></div>
+			</div>
+		</div>
+	</nav>
+</section>
+<section data-bs-version="5.1" id="blog-2-udXqNcEuPu" style="width: 1900px ;align-items: center; margin: 0 auto;">
+    <div style="position: sticky; top: 100px; z-index: 100; width: 97% !important; margin: auto; display: block;" class="search-responsive">
+        <input type="text" id="defSearch" onkeyup="searchFunction()" placeholder="Search for Names or ID...">
+    </div>
+    <div id="popup" class="popup">
+        <span id="popup-text">Copying to clipboard was successful!</span>
+        <div>
+            <button id="close-btn">Close</button>
+        </div>
+      </div>
+    <div class="container-fluid" style="overflow: auto;" style="width: 100%;">
+        <div class="row justify-content-center mb-5" style="width: 100%;">
+            <div class="col-12 content-head" style="width: 100%;">
+                <div class="mbr-section-head" style="width: 100%;">
+                    <div class="outer-dev" style="width: 100%;">
+                        <div class="inner-dev" style="width: 100%;">
+                            <div class="table-responsive">
+                                <table id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: darkorange; position: sticky !important; color: white">CBC Sub Sector</th>
+                                            <th style="background-color: darkorange; position: sticky !important;color: white">Name (KH)</th>
+                                            <th style="background-color: darkorange; position: sticky !important;color: white">Name (EN)</th>
+                                            <th style="background-color: darkred; position: sticky !important; color: white">CBC Sector</th>
+                                            <th style="background-color: darkred; position: sticky !important; color: white">Name (KH)</th>
+                                            <th style="background-color: darkred; position: sticky !important; color: white">Name (EN)</th>
+                                            <th style="background-color: darkgreen; position: sticky !important; color: white">CBC Sub Industry</th>
+                                            <th style="background-color: darkgreen; position: sticky !important; color: white">Name (KH)</th>
+                                            <th style="background-color: darkgreen; position: sticky !important; color: white">Name (EN)</th>
+                                            <th style="background-color: darkblue; position: sticky !important; color: white">CBC Industry</th>
+                                            <th style="background-color: darkblue; position: sticky !important; color: white">Name (KH)</th>
+                                            <th style="background-color: darkblue; position: sticky !important; color: white">Name (EN)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section data-bs-version="5.1" class="footer3 cid-udXqNcIyqe" once="footers" id="footer-6-udXqNcIyqe" style="width:1900px;align-items: center; margin: 0 auto;">
+
+    <div class="container">
+            <div class="col-12 mt-4">
+                <p class="mbr-fonts-style copyright display-7">Copyright © All Rights Reserved by SBI Ly Hour Bank Plc.</p>
+            </div>
+    </div>
+</section>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/parallax/jarallax.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/ytplayer/index.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/masonry/masonry.pkgd.min.js"></script>
+  <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/scrollgallery/scroll-gallery.js"></script>
+  <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script src="assets/formoid/formoid.min.js"></script>
+  <script src="backend/data.js"></script>
+  <script src="backend/scroll.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  
+  
+  
+</body>
+</html>
